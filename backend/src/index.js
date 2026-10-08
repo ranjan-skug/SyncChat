@@ -27,14 +27,15 @@ app.use(express.json({ limit: "10mb" }));
 app.use(express.urlencoded({ extended: true, limit: "10mb" }));
 app.use(cookieParser());
 
-// API routes
+// API Routes
 app.use("/api/auth", authRoutes);
 app.use("/api/messages", messageRoutes);
 
-// Serve React frontend in production
+// Production - Serve React Frontend
 if (process.env.NODE_ENV === "production") {
   const frontendPath = path.join(
     process.cwd(),
+    "..",
     "frontend",
     "dist"
   );
@@ -44,13 +45,11 @@ if (process.env.NODE_ENV === "production") {
   app.use(express.static(frontendPath));
 
   app.get("/{*splat}", (req, res) => {
-    res.sendFile(
-      path.join(frontendPath, "index.html")
-    );
+    res.sendFile(path.join(frontendPath, "index.html"));
   });
 }
 
-// Start server
+// Start Server
 server.listen(PORT, "0.0.0.0", () => {
   console.log(`Server is running on port ${PORT}`);
   connectDB();
