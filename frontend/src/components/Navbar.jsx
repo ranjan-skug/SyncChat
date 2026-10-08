@@ -18,7 +18,7 @@ export default function NavBar() {
                 <MessageSquare className="w-5 h-5 text-primary" />
               </div>
 
-              <h1 className="text-lg font-bold">Chatty</h1>
+              <h1 className="text-lg font-bold">SyncChat</h1>
             </Link>
           </div>
           <div className="flex items-center gap-2">
